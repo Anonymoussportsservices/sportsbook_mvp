@@ -8,11 +8,7 @@ app = FastAPI(
 )
 
 origins = [
-    origins = [
     "http://localhost:3000",
-    "https://sportsbook-mvp2-0.onrender.com/",
-]
-
 ]
 
 app.add_middleware(
@@ -26,3 +22,20 @@ app.add_middleware(
 @app.get("/")
 async def root():
     return {"message": "Sportsbook MVP backend is running"}
+
+@app.get("/api/users")
+async def get_users():
+    return [
+        {"id": 1, "name": "Alice"},
+        {"id": 2, "name": "Bob"}
+    ]
+from pydantic import BaseModel
+
+class User(BaseModel):
+    id: int
+    name: str
+
+@app.post("/api/users")
+async def create_user(user: User):
+    # For now, just return the user data back
+    return user
