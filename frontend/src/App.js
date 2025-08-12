@@ -6,10 +6,17 @@ function App() {
   useEffect(() => {
     const apiUrl = process.env.REACT_APP_API_URL.replace(/\/$/, '');
     console.log('Fetching from:', apiUrl + "/api/users");
-    fetch(apiUrl + "/api/users")
-      .then(res => res.json())
-      .then(data => setUsers(data))
-      .catch(err => console.error('Fetch error:', err));
+fetch(apiUrl + "/api/users")
+  .then(res => {
+    console.log('Response status:', res.status);
+    return res.json();
+  })
+  .then(data => {
+    console.log('Received data:', data);
+    setUsers(data);
+  })
+  .catch(err => console.error('Fetch error:', err));
+
   }, []);
 
   return (
