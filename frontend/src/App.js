@@ -2,10 +2,11 @@ import React, { useEffect } from 'react';
 
 function App() {
   useEffect(() => {
-    fetch('https://sportsbook-mvp2-0.onrender.com/')
+    console.log("About to call API");
+    fetch(process.env.REACT_APP_API_URL + "/api/users")
       .then(response => response.json())
       .then(data => {
-        console.log('API Response:', data);
+        console.log(data);
       })
       .catch(error => {
         console.error('Fetch error:', error);
