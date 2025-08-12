@@ -5,16 +5,16 @@ app = FastAPI()
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
+    allow_origins=["*"],  # For quick test, allow all origins
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
 
-
 @app.get("/")
 async def root():
-    return {"message": "Sportsbook MVP backend is running"}
+    return {"message": "API is working"}
+
 
 @app.get("/api/users")
 async def get_users():
