@@ -5,11 +5,12 @@ app = FastAPI()
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["https://sportsbook-mvp.onrender.com"],  # your frontend URL here
+    allow_origins=["*"],  # allow all origins temporarily
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
 
 @app.get("/")
 async def root():
@@ -33,8 +34,4 @@ async def create_user(user: User):
     # For now, just return the user data back
     return user
 
-@console.log("About to call API");
-fetch("https://sportsbook-mvp2-0.onrender.com/api/endpoint")
-  .then(res => res.json())
-  .then(data => console.log(data))
-  .catch(err => console.error(err));
+
