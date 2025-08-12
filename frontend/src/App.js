@@ -2,15 +2,11 @@ import React, { useEffect } from 'react';
 
 function App() {
   useEffect(() => {
-    console.log("About to call API");
-    fetch(process.env.REACT_APP_API_URL + "//api/users")
-      .then(response => response.json())
-      .then(data => {
-        console.log(data);
-      })
-      .catch(error => {
-        console.error('Fetch error:', error);
-      });
+    const apiUrl = process.env.REACT_APP_API_URL.replace(/\/$/, '');
+    fetch(apiUrl + "/api/users")
+      .then(res => res.json())
+      .then(data => console.log(data))
+      .catch(err => console.error('Fetch error:', err));
   }, []);
 
   return (
