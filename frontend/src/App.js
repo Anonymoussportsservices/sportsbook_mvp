@@ -5,6 +5,7 @@ function App() {
 
   useEffect(() => {
     const apiUrl = process.env.REACT_APP_API_URL.replace(/\/$/, '');
+    console.log('Fetching from:', apiUrl + "/api/users");
     fetch(apiUrl + "/api/users")
       .then(res => res.json())
       .then(data => setUsers(data))
@@ -15,11 +16,15 @@ function App() {
     <div>
       <h1>Sportsbook MVP Frontend</h1>
       <h2>Users List:</h2>
-      <ul>
-        {users.map(user => (
-          <li key={user.id}>{user.name} (ID: {user.id})</li>
-        ))}
-      </ul>
+      {users.length === 0 ? (
+        <p>Loading users...</p>
+      ) : (
+        <ul>
+          {users.map(user => (
+            <li key={user.id}>{user.name} (ID: {user.id})</li>
+          ))}
+        </ul>
+      )}
     </div>
   );
 }
