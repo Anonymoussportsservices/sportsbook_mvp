@@ -5,7 +5,7 @@ app = FastAPI()
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # For quick test, allow all origins
+    allow_origins=["https://sportsbook-mvp.onrender.com"],  # your frontend URL here
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
